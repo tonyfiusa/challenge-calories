@@ -32,8 +32,8 @@ public class OrderDaoMock implements OrderDao {
 
   @Override
   public Optional<Order> getById(long id) {
-    if (id == 1L) {
-      return Optional.of(new Order(1, 1L, 1L, 1L, "name1", 1L, 2L, 3L, 0L));
+    if (id == 1L || id == 4) {
+      return Optional.of(new Order(id, 1L, 1L, 1L, "name1", 1L, 2L, 3L, 0L));
     }
     if (id == 2L) {
       return Optional.of(new Order(2, 2L, 1L, 1L, "name1", 1L, 2L, 3L, 0L));
@@ -42,8 +42,11 @@ public class OrderDaoMock implements OrderDao {
   }
 
   @Override
-  public Order update(long id, String employeeName, Long entryId, Long mainCourseId, Long beverageId) {
-    return new Order(1, 2L, 1L, 1L, employeeName, entryId, mainCourseId, beverageId, 0L);
+  public Optional<Order> update(long id, String employeeName, Long entryId, Long mainCourseId, Long beverageId) {
+    if (1 == id) {
+      return Optional.of(new Order(1, 2L, 1L, 1L, employeeName, entryId, mainCourseId, beverageId, 0L));
+    }
+    return Optional.empty();
   }
 
   @Override

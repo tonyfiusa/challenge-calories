@@ -30,6 +30,16 @@ class UpdateOrderUserCaseTest {
   }
 
   @Test
+  void update_result_missing() {
+    try {
+      subject.update(4, "newName", 10L, 11L, 12L);
+    } catch (NotPermttedException npe) {
+      return;
+    }
+    fail();
+  }
+
+  @Test
   void update_notAllowed() {
     try {
       subject.update(2, "newName", 10L, 11L, 12L);

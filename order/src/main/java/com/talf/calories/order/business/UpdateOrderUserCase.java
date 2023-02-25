@@ -6,6 +6,8 @@ import com.talf.calories.order.business.exceptions.NotPermttedException;
 import com.talf.calories.order.entities.Order;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UpdateOrderUserCase {
 
@@ -23,7 +25,9 @@ public class UpdateOrderUserCase {
     if (order.createdBy() != currentUserId) {
       throw new NotPermttedException();
     }
-    OrderDao.Order updated = this.orderDao.update(id, employeeName, entryId, mainCourseId, beverageId);
-    return new Order(updated.id(), updated.createdAt(), updated.employeeName(), updated.entryId(), updated.mainCourseId(), updated.beverageId(), updated.totalCalories());
+    Optional<OrderDao.Order> update = this.orderDao.update(id, employeeName, entryId, mainCourseId, beverageId);
+
+    return update.map(updated -> new Order(updated.id(), updated.createdAt(), updated.employeeName(), updated.entryId(), updated.mainCourseId(), updated.beverageId(), updated.totalCalories()))
+      .orElseThrow(NotPermttedException::new);
   }
 }

@@ -8,7 +8,7 @@ public interface OrderDao {
   List<Order> getByUserId(long userId);
 
   Optional<Order> getById(long id);
-  Order update(long id, String employeeName, Long entryId, Long mainCourseId, Long beverageId);
+  Optional<Order> update(long id, String employeeName, Long entryId, Long mainCourseId, Long beverageId);
   void delete(long id);
 
   record Order(long id, long createdBy, long createdAt, long updatedAt, String employeeName, Long entryId, Long mainCourseId, Long beverageId, Long totalCalories) {}
