@@ -17,7 +17,7 @@ class GetAvailableBeveragesUseCaseTest {
   void get_success() {
     List<Beverage> beverages = subject.get();
     assertEquals(2, beverages.size());
-    assertTrue(beverages.contains(new Beverage("id1", "beverage1")));
-    assertTrue(beverages.contains(new Beverage("id2", "beverage2")));
+    assertTrue(beverages.contains(new Beverage(1, "beverage1")));
+    assertTrue(beverages.contains(new Beverage(2, "beverage2")));
   }
 }

@@ -16,7 +16,7 @@ class GetAvailableEntriesUseCaseTest {
   void get_success() {
     List<Entry> entries = subject.get();
     assertEquals(2, entries.size());
-    assertTrue(entries.contains(new Entry("id1", "entry1")));
-    assertTrue(entries.contains(new Entry("id2", "entry2")));
+    assertTrue(entries.contains(new Entry(1, "entry1")));
+    assertTrue(entries.contains(new Entry(2, "entry2")));
   }
 }

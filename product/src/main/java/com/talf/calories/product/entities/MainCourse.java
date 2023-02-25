@@ -1,4 +1,4 @@
 package com.talf.calories.product.entities;
 
-public record MainCourse(String id, String name) {
+public record MainCourse(long id, String name) {
 }

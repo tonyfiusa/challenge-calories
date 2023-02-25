@@ -5,5 +5,5 @@ import java.util.List;
 public interface BeverageDao {
   List<Beverage> getAllBeverages();
 
-  record Beverage(String id, String name, long calories) {}
+  record Beverage(long id, String name, long calories) {}
 }

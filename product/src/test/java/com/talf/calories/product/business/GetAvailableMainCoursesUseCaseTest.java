@@ -17,7 +17,7 @@ class GetAvailableMainCoursesUseCaseTest {
   void get_success() {
     List<MainCourse> mainCourses = subject.get();
     assertEquals(2, mainCourses.size());
-    assertTrue(mainCourses.contains(new MainCourse("id1", "mainCourse1")));
-    assertTrue(mainCourses.contains(new MainCourse("id2", "mainCourse2")));
+    assertTrue(mainCourses.contains(new MainCourse(1, "mainCourse1")));
+    assertTrue(mainCourses.contains(new MainCourse(2, "mainCourse2")));
   }
 }

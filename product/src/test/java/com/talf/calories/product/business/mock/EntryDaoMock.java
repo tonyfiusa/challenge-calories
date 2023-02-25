@@ -9,7 +9,7 @@ public class EntryDaoMock implements EntryDao {
   @Override
   public List<Entry> getAllEntries() {
     return Arrays.asList(
-      new Entry("id1", "entry1", 100),
-      new Entry("id2", "entry2", 200));
+      new Entry(1, "entry1", 100),
+      new Entry(2, "entry2", 200));
   }
 }
