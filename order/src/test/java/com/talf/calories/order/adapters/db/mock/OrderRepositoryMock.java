@@ -11,7 +11,7 @@ public class OrderRepositoryMock implements OrderRepository {
   @Override
   public List<Order> findByCreatedBy(long userId) {
     Order order1 = new Order();
-    order1.id = 1;
+    order1.id = 1L;
     order1.createdBy = 1;
     order1.createdAt = 1;
     order1.updatedAt = 2;
@@ -25,7 +25,7 @@ public class OrderRepositoryMock implements OrderRepository {
 
   @Override
   public <S extends Order> S save(S entity) {
-    entity.id = 1;
+    entity.id = 1L;
     entity.createdBy = 1;
     entity.createdAt = 1;
     entity.updatedAt = 3;

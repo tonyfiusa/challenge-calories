@@ -3,14 +3,16 @@ package com.talf.calories.order.adapters.db.entities;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity(name="order")
+@Entity(name="order_table")
+@EntityListeners(AuditingEntityListener.class)
 public class Order {
   @Id
-  public long id;
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  public Long id;
   @CreatedBy
   public long createdBy;
   @CreatedDate
