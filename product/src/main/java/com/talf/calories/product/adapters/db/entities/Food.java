@@ -9,8 +9,6 @@ import javax.persistence.*;
 public class Food {
   @Id
   public Long id;
-  @Column(name = "name")
   public String name;
-  @Column(name = "calories")
   public long calories;
 }
