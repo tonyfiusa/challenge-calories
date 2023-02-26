@@ -7,20 +7,17 @@ import java.util.Optional;
 
 public class UserRepositoryMock implements UserRepository {
   @Override
-  public Optional<User> findByEmail(String email) {
+  public Optional<User> findByUsername(String username) {
     User user = new User();
     user.id = 1L;
     user.createdAt = 2;
-    user.email = email;
-    user.name = "name";
-    user.provider = "provider";
+    user.username = username;
+    user.password = "pass";
     return Optional.of(user);
   }
 
   @Override
   public <S extends User> S save(S entity) {
-    entity.id = 1L;
-    entity.createdAt = 2;
     return entity;
   }
 

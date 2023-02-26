@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 
 import java.util.Optional;
 
@@ -14,8 +16,8 @@ public class AuditConfig {
   @Bean
   public AuditorAware<Long> auditorProvider() {
     return () -> {
-      //TODO: fetch from security context holder after security is added
-      return Optional.of(1L);
+      JwtAuthenticationToken authentication = (JwtAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+      return Optional.of(authentication.getToken().getClaim("uid"));
     };
   }
 }

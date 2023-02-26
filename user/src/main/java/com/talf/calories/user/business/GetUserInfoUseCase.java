@@ -17,6 +17,6 @@ public class GetUserInfoUseCase {
 
   public Optional<User> get(String userEmail) {
     return this.userDao.getUser(userEmail)
-      .map(user -> new User(user.id(), user.email(), user.name()));
+      .map(user -> new User(user.id(), user.username(), user.password()));
   }
 }

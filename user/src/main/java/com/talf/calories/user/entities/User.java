@@ -1,4 +1,4 @@
 package com.talf.calories.user.entities;
 
-public record User(long id, String email, String name) {
+public record User(long id, String username, String password) {
 }

@@ -6,15 +6,15 @@ import com.talf.calories.order.business.PlaceOrderUseCase;
 import com.talf.calories.order.business.UpdateOrderUserCase;
 import com.talf.calories.order.entities.Order;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.TableGenerator;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/order/order", produces = MediaType.APPLICATION_JSON_VALUE)
-@TableGenerator(name = "order-api")
+@Tag(name = "order-api")
 public class OrderRestController {
 
   private final GetUserOrdersUseCase getUserOrdersUseCase;

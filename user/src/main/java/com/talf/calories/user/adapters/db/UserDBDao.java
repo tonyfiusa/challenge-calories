@@ -16,18 +16,8 @@ public class UserDBDao implements UserDao {
   }
 
   @Override
-  public Optional<User> getUser(String email) {
-    return this.userRepository.findByEmail(email)
-      .map(user -> new User(user.id, user.provider, user.email, user.name, user.createdAt));
-  }
-
-  @Override
-  public User registerUser(String email, String name, String provider) {
-    com.talf.calories.user.adapters.db.entities.User user = new com.talf.calories.user.adapters.db.entities.User();
-    user.email = email;
-    user.name = name;
-    user.provider = provider;
-    com.talf.calories.user.adapters.db.entities.User saved = this.userRepository.save(user);
-    return new User(saved.id, saved.provider, saved.email, saved.name, saved.createdAt);
+  public Optional<User> getUser(String username) {
+    return this.userRepository.findByUsername(username)
+      .map(user -> new User(user.id, user.username, user.password, user.createdAt));
   }
 }

@@ -13,7 +13,6 @@ public class User {
   public Long id;
   @CreatedDate
   public long createdAt;
-  public String email;
-  public String name;
-  public String provider;
+  public String username;
+  public String password;
 }
