@@ -1,13 +1,7 @@
 package com.talf.calories.order.adapters.controllers;
 
-import com.talf.calories.order.adapters.controllers.mock.DeleteOrderUserCaseMock;
-import com.talf.calories.order.adapters.controllers.mock.GetUserOrdersUseCaseMock;
-import com.talf.calories.order.adapters.controllers.mock.PlaceOrderUseCaseMock;
-import com.talf.calories.order.adapters.controllers.mock.UpdateOrderUserCaseMock;
-import com.talf.calories.order.business.DeleteOrderUserCase;
-import com.talf.calories.order.business.GetUserOrdersUseCase;
-import com.talf.calories.order.business.PlaceOrderUseCase;
-import com.talf.calories.order.business.UpdateOrderUserCase;
+import com.talf.calories.order.adapters.controllers.mock.*;
+import com.talf.calories.order.business.NotifyOrderCaloriesCalculationUseCase;
 import com.talf.calories.order.entities.Order;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class OrderRestControllerTest {
 
   private final OrderRestController subject = new OrderRestController(new GetUserOrdersUseCaseMock(),
-    new DeleteOrderUserCaseMock(), new UpdateOrderUserCaseMock(), new PlaceOrderUseCaseMock());
+    new DeleteOrderUserCaseMock(), new UpdateOrderUserCaseMock(), new PlaceOrderUseCaseMock(), new NotifyOrderCaloriesCalculationUseCaseMock());
 
   @Test
   void getAll_success() {

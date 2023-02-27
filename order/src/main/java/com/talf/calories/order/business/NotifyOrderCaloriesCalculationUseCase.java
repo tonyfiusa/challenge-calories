@@ -20,7 +20,7 @@ public class NotifyOrderCaloriesCalculationUseCase {
   public void notify(long orderId) {
     this.orderDao.getById(orderId)
       .ifPresent(order ->
-        this.notificationDao.notifyCaloriesCalculation(
+        this.notificationDao.notifyCaloriesCalculation(orderId,
           Stream.of(order.entryId(), order.mainCourseId(), order.beverageId())
             .filter(Objects::nonNull).toList()));
   }

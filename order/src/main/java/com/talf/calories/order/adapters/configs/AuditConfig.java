@@ -17,7 +17,7 @@ public class AuditConfig {
   public AuditorAware<Long> auditorProvider() {
     return () -> {
       JwtAuthenticationToken authentication = (JwtAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-      return Optional.of(authentication.getToken().getClaim("uid"));
+      return Optional.ofNullable(authentication != null ? authentication.getToken().getClaim("uid") : null);
     };
   }
 }

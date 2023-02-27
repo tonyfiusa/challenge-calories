@@ -8,6 +8,7 @@
 <ui:composition template="layout.xhtml">
   <ui:define name="content">
     <h:form id="form">
+      <p:poll interval="15" update="orders" />
       <p:dataTable id="orders" var="order"
                    value="#{orderController.orders}"
            >

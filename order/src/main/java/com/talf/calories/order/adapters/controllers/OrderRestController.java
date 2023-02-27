@@ -1,9 +1,6 @@
 package com.talf.calories.order.adapters.controllers;
 
-import com.talf.calories.order.business.DeleteOrderUserCase;
-import com.talf.calories.order.business.GetUserOrdersUseCase;
-import com.talf.calories.order.business.PlaceOrderUseCase;
-import com.talf.calories.order.business.UpdateOrderUserCase;
+import com.talf.calories.order.business.*;
 import com.talf.calories.order.entities.Order;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,14 +18,15 @@ public class OrderRestController {
   private final DeleteOrderUserCase deleteOrderUserCase;
   private final UpdateOrderUserCase updateOrderUserCase;
   private final PlaceOrderUseCase placeOrderUseCase;
+  private final NotifyOrderCaloriesCalculationUseCase notifyOrderCaloriesCalculationUseCase;
 
-  public OrderRestController(GetUserOrdersUseCase getUserOrdersUseCase, DeleteOrderUserCase deleteOrderUserCase, UpdateOrderUserCase updateOrderUserCase, PlaceOrderUseCase placeOrderUseCase) {
+  public OrderRestController(GetUserOrdersUseCase getUserOrdersUseCase, DeleteOrderUserCase deleteOrderUserCase, UpdateOrderUserCase updateOrderUserCase, PlaceOrderUseCase placeOrderUseCase, NotifyOrderCaloriesCalculationUseCase notifyOrderCaloriesCalculationUseCase) {
     this.getUserOrdersUseCase = getUserOrdersUseCase;
     this.deleteOrderUserCase = deleteOrderUserCase;
     this.updateOrderUserCase = updateOrderUserCase;
     this.placeOrderUseCase = placeOrderUseCase;
+    this.notifyOrderCaloriesCalculationUseCase = notifyOrderCaloriesCalculationUseCase;
   }
-
 
   @GetMapping("/all")
   @Operation(
@@ -46,7 +44,9 @@ public class OrderRestController {
                          @RequestParam(name = "entryId", required = false) Long entryId,
                          @RequestParam(name = "mainCourseId", required = false) Long mainCourseId,
                          @RequestParam(name = "beverageId", required = false) Long beverageId) {
-    return this.placeOrderUseCase.placeOrder(employeeName, entryId, mainCourseId, beverageId);
+    Long orderId = this.placeOrderUseCase.placeOrder(employeeName, entryId, mainCourseId, beverageId);
+    this.notifyOrderCaloriesCalculationUseCase.notify(orderId);
+    return orderId;
   }
 
   @DeleteMapping("/{id}")
@@ -66,6 +66,8 @@ public class OrderRestController {
                       @RequestParam(name = "entryId", required = false) Long entryId,
                       @RequestParam(name = "mainCourseId", required = false) Long mainCourseId,
                       @RequestParam(name = "beverageId", required = false) Long beverageId) {
-    return this.updateOrderUserCase.update(id, employeeName, entryId, mainCourseId, beverageId);
+    Order order = this.updateOrderUserCase.update(id, employeeName, entryId, mainCourseId, beverageId);
+    this.notifyOrderCaloriesCalculationUseCase.notify(order.id());
+    return order;
   }
 }

@@ -13,7 +13,7 @@ public class NotificationDaoMock implements NotificationDao {
   }
 
   @Override
-  public void notifyCaloriesCalculation(List<Long> itemsIds) {
+  public void notifyCaloriesCalculation(long orderId, List<Long> itemsIds) {
     this.collector.add(itemsIds);
   }
 }

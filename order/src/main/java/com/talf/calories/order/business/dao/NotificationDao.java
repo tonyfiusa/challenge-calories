@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface NotificationDao {
 
-  void notifyCaloriesCalculation(List<Long> itemsIds);
+  void notifyCaloriesCalculation(long orderId, List<Long> itemsIds);
 }
