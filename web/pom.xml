@@ -103,7 +103,7 @@
     <profile>
       <id>swagger</id>
       <activation>
-        <activeByDefault>false</activeByDefault>
+        <activeByDefault>true</activeByDefault>
       </activation>
       <build>
         <plugins>
