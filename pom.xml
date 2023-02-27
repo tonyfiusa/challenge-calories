@@ -20,6 +20,7 @@
     <module>user</module>
     <module>product</module>
     <module>order</module>
+    <module>web</module>
   </modules>
   <dependencyManagement>
     <dependencies>

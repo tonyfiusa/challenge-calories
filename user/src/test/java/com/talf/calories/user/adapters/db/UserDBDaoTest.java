@@ -14,7 +14,7 @@ class UserDBDaoTest {
 
   @Test
   void getUser_success() {
-    Optional<UserDao.User> byEmail = subject.getUser("email");
+    Optional<UserDao.User> byEmail = subject.getUser("username");
     assertTrue(byEmail.isPresent());
     assertEquals(new UserDao.User(1, "username", "password", 2), byEmail.get());
   }

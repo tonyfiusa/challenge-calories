@@ -12,7 +12,7 @@ public class UserRepositoryMock implements UserRepository {
     user.id = 1L;
     user.createdAt = 2;
     user.username = username;
-    user.password = "pass";
+    user.password = "password";
     return Optional.of(user);
   }
 

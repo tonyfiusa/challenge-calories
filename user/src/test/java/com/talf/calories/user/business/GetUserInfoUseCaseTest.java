@@ -14,8 +14,8 @@ class GetUserInfoUseCaseTest {
 
   @Test
   void get_success() {
-    Optional<User> user = this.subject.get("email");
+    Optional<User> user = this.subject.get("username");
     assertTrue(user.isPresent());
-    assertEquals(new User(1, "email", "name"), user.get());
+    assertEquals(new User(1, "username", "password"), user.get());
   }
 }
