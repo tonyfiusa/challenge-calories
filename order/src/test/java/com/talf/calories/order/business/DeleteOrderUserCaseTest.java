@@ -6,6 +6,7 @@ import com.talf.calories.order.business.mock.UserDaoMock;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,7 +16,7 @@ class DeleteOrderUserCaseTest {
   @Test
   void delete_success() {
     List<Long> deleteCollector = new ArrayList<>();
-    DeleteOrderUserCase subject = new DeleteOrderUserCase(new OrderDaoMock(deleteCollector), new UserDaoMock());
+    DeleteOrderUserCase subject = new DeleteOrderUserCase(new OrderDaoMock(deleteCollector, Collections.emptyList()), new UserDaoMock());
     subject.delete(1);
     assertEquals(1, deleteCollector.size());
     assertEquals(1, deleteCollector.get(0));
@@ -24,7 +25,7 @@ class DeleteOrderUserCaseTest {
   @Test
   void delete_missing() {
     List<Long> deleteCollector = new ArrayList<>();
-    DeleteOrderUserCase subject = new DeleteOrderUserCase(new OrderDaoMock(deleteCollector), new UserDaoMock());
+    DeleteOrderUserCase subject = new DeleteOrderUserCase(new OrderDaoMock(deleteCollector, Collections.emptyList()), new UserDaoMock());
     try {
       subject.delete(3);
     } catch (NotPermttedException npe) {
@@ -37,7 +38,7 @@ class DeleteOrderUserCaseTest {
   @Test
   void delete_notAllowed() {
     List<Long> deleteCollector = new ArrayList<>();
-    DeleteOrderUserCase subject = new DeleteOrderUserCase(new OrderDaoMock(deleteCollector), new UserDaoMock());
+    DeleteOrderUserCase subject = new DeleteOrderUserCase(new OrderDaoMock(deleteCollector, Collections.emptyList()), new UserDaoMock());
     try {
       subject.delete(2);
     } catch (NotPermttedException npe) {

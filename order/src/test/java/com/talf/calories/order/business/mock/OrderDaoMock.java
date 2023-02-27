@@ -8,11 +8,15 @@ public class OrderDaoMock implements OrderDao {
 
   private final List<Long> deleteCollector;
 
+  private final List<Long> updateCaloriesCollector;
+
   public OrderDaoMock() {
     this.deleteCollector = new ArrayList<>();
+    this.updateCaloriesCollector = new ArrayList<>();
   }
-  public OrderDaoMock(List<Long> collector) {
+  public OrderDaoMock(List<Long> collector, List<Long> updateCaloriesCollector) {
     this.deleteCollector = collector;
+    this.updateCaloriesCollector = updateCaloriesCollector;
   }
 
   @Override
@@ -52,5 +56,11 @@ public class OrderDaoMock implements OrderDao {
   @Override
   public void delete(long id) {
     this.deleteCollector.add(id);
+  }
+
+  @Override
+  public Optional<Order> updateCalories(long id, long calories) {
+    updateCaloriesCollector.add(calories);
+    return Optional.of(new Order(1, 1L, 1L, 1L, "name", 1L, 2L, 3L, calories));
   }
 }

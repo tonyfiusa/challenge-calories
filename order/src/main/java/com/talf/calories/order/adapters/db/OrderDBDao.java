@@ -51,6 +51,19 @@ public class OrderDBDao implements OrderDao {
       .map(this::toDaoOrder);
   }
 
+  @Override
+  public Optional<Order> updateCalories(long id, long calories) {
+    return this.orderRepository.findById(id)
+      .map(order -> updateCalories(order, calories))
+      .map(this.orderRepository::save)
+      .map(this::toDaoOrder);
+  }
+
+  @Override
+  public void delete(long id) {
+    this.orderRepository.deleteById(id);
+  }
+
   private com.talf.calories.order.adapters.db.entities.Order updateOrder(com.talf.calories.order.adapters.db.entities.Order order, String employeeName, Long entryId, Long mainCourseId, Long beverageId) {
     order.beverageId = beverageId;
     order.mainCourseId = mainCourseId;
@@ -59,8 +72,8 @@ public class OrderDBDao implements OrderDao {
     return order;
   }
 
-  @Override
-  public void delete(long id) {
-    this.orderRepository.deleteById(id);
+  private com.talf.calories.order.adapters.db.entities.Order updateCalories(com.talf.calories.order.adapters.db.entities.Order order, long calories) {
+    order.totalCalories = calories;
+    return order;
   }
 }

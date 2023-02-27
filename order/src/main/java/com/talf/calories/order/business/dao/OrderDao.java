@@ -9,6 +9,7 @@ public interface OrderDao {
 
   Optional<Order> getById(long id);
   Optional<Order> update(long id, String employeeName, Long entryId, Long mainCourseId, Long beverageId);
+  Optional<Order> updateCalories(long id, long calories);
   void delete(long id);
 
   record Order(long id, long createdBy, long createdAt, long updatedAt, String employeeName, Long entryId, Long mainCourseId, Long beverageId, Long totalCalories) {}
