@@ -26,7 +26,9 @@ public class SecurityConfig {
   SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
     http
       .authorizeHttpRequests(authorize ->
-        authorize.anyRequest().authenticated()
+        authorize
+        .antMatchers( "/actuator/health/**").permitAll()
+        .antMatchers( "/**").authenticated()
       )
       .formLogin(Customizer.withDefaults());
     return http.build();

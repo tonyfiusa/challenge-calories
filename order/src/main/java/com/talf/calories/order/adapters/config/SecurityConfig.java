@@ -11,8 +11,8 @@ public class SecurityConfig {
   @Bean
   SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http.authorizeRequests()
-      .anyRequest()
-      .authenticated()
+      .antMatchers( "/actuator/health/**").permitAll()
+      .antMatchers( "/**").authenticated()
       .and()
       .oauth2ResourceServer()
       .jwt();

@@ -5,6 +5,7 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 import com.talf.calories.user.adapters.CustomUserDetails;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -34,6 +35,10 @@ import java.util.UUID;
 
 @Configuration
 public class AuthorizationServerConfig {
+
+  @Value("${issuer.url}")
+  private String issuerUrl;
+
   @Bean
   public RegisteredClientRepository registeredClientRepository() {
     RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
@@ -42,8 +47,8 @@ public class AuthorizationServerConfig {
       .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
       .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
       .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-      .redirectUri("http://127.0.0.1:8081/login/oauth2/code/calories-client-oidc")
-      .redirectUri("http://127.0.0.1:8081/authorized")
+      .redirectUri("http://web:8081/login/oauth2/code/calories-client-oidc")
+      .redirectUri("http://web:8081/authorized")
       .scope(OidcScopes.OPENID)
       .scope("calories.read")
       .build();
@@ -77,7 +82,7 @@ public class AuthorizationServerConfig {
   @Bean
   public ProviderSettings providerSettings() {
     return ProviderSettings.builder()
-      .issuer("http://localhost:8100")
+      .issuer(issuerUrl)
       .build();
   }
 

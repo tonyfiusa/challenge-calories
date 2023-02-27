@@ -3,7 +3,6 @@ package com.talf.calories.web;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.context.ServletContextAware;
 
@@ -11,7 +10,7 @@ import javax.faces.webapp.FacesServlet;
 import javax.servlet.ServletContext;
 
 @SpringBootApplication
-public class WebApplication extends SpringBootServletInitializer implements ServletContextAware {
+public class WebApplication implements ServletContextAware {
   public static void main(String[] args) {
     SpringApplication.run(WebApplication.class, args);
   }
@@ -26,6 +25,7 @@ public class WebApplication extends SpringBootServletInitializer implements Serv
   @Override
   public void setServletContext(ServletContext servletContext) {
     servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
+    servletContext.setInitParameter("javax.faces.FACELETS_SKIP_COMMENTS", "true");
   }
 
 }
