@@ -33,4 +33,4 @@ You can add the data you want in the db_scripts/data.sql and rerun
 1. Stop docker-compose if running
 ``` docker-compose down ```
 2. Relaunch docker-compose
-   ``` docker-compose down up ```
+``` docker-compose down up ```
